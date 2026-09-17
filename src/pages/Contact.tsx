@@ -10,6 +10,7 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { GoogleMap } from '../components/GoogleMap';
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -129,10 +130,8 @@ export function Contact() {
                 </div>
               </div>
 
-              {/* Map placeholder */}
-              <div className="h-[400px] rounded-xl overflow-hidden shadow-lg bg-gray-200 flex items-center justify-center">
-                <p className="text-gray-600">Map coming soon</p>
-              </div>
+              {/* Interactive Store Map */}
+              <GoogleMap height="400px" />
             </div>
 
             {/* Contact Form */}

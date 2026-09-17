@@ -1,5 +1,6 @@
 import React from 'react';
 import { Clock, Phone, Mail, MapPin } from 'lucide-react';
+import { GoogleMap } from '../components/GoogleMap';
 
 export function Location() {
   return (
@@ -18,10 +19,8 @@ export function Location() {
       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12">
-            {/* Map placeholder */}
-            <div className="h-[500px] rounded-lg overflow-hidden shadow-lg bg-gray-200 flex items-center justify-center">
-              <p className="text-gray-600">Map coming soon</p>
-            </div>
+            {/* Interactive Store Map */}
+            <GoogleMap height="500px" />
 
             {/* Store Details */}
             <div className="space-y-8">
