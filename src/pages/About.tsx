@@ -7,20 +7,20 @@ import lisaAtDesk from '../../assets/Lisa_at-desk.jpg';
 export function About() {
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative h-[60vh] bg-cover bg-center bg-no-repeat flex items-center justify-center"
+      {/* Hero Banner Section */}
+      <section className="relative py-10 md:py-14 bg-cover bg-center bg-no-repeat flex items-center justify-center overflow-hidden"
         style={{
           backgroundImage: `url(${backgroundLavender})`,
         }}
       >
-        <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px] z-10"></div>
+        <div className="absolute inset-0 bg-brand-purple/40 backdrop-blur-[1px] z-10"></div>
         <div className="relative z-20 text-center text-white px-4">
-          <h1 className="text-5xl md:text-6xl font-serif mb-6">About Lisa's Natural Path</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold drop-shadow-md">About Lisa's Natural Path</h1>
         </div>
       </section>
 
       {/* Our Story Section */}
-      <section className="py-20 px-4">
+      <section className="py-8 md:py-12 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
