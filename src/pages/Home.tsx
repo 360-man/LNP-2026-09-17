@@ -108,7 +108,7 @@ export function Home() {
       >
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative max-w-4xl mx-auto px-4 text-center text-white">
-          <h2 className="text-5xl font-medium mb-10 max-w-2xl mx-auto leading-relaxed">
+          <h2 className="text-5xl font-small mb-6">
             Serving Butler, Shanor-Northvue, and surrounding areas, Lisa's Natural Path is your trusted Holistic Practitioner and wellness center. Our Traditional Naturopathic Practitioner and skilled Licensed Massage Therapist provide natural solutions for pain relief, hormone testing, allergy elimination, colon hydrotherapy, and complete health evaluations. We partner with you to achieve your highest health potential through the body's innate healing ability.
           </h2>
           <Link
