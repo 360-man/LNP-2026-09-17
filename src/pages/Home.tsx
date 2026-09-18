@@ -66,7 +66,7 @@ export function Home() {
         <div className="relative max-w-4xl mx-auto text-center z-20 w-full">
           <div className="bg-white/85 backdrop-blur-md rounded-3xl p-8 sm:p-10 md:p-14 border border-white/90 shadow-2xl transition-all">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-brand-purple font-bold tracking-tight mb-6 leading-tight">
-              Holistic Wellness Starts Here
+              Naturopathic Practitioner Butler
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-gray-800 font-medium mb-10 max-w-2xl mx-auto leading-relaxed">
               Premium Herbal Remedies, Supplements & Wellness Support for Your Natural Health Journey
@@ -109,7 +109,7 @@ export function Home() {
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative max-w-4xl mx-auto px-4 text-center text-white">
           <h2 className="text-5xl font-serif mb-6">
-            Holistic Health Services Tailored to You
+            Serving Butler, Shanor-Northvue, and surrounding areas, Lisa's Natural Path is your trusted Holistic Practitioner and wellness center. Our Traditional Naturopathic Practitioner and skilled Licensed Massage Therapist provide natural solutions for pain relief, hormone testing, allergy elimination, colon hydrotherapy, and complete health evaluations. We partner with you to achieve your highest health potential through the body's innate healing ability.
           </h2>
           <p className="text-xl mb-12 leading-relaxed">
             Experience the transformative power of our comprehensive wellness services. 
