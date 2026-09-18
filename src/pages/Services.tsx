@@ -1,149 +1,9 @@
 import React, { useState } from 'react';
-import { ChevronDown, Calendar, Info, X } from 'lucide-react';
+import { ChevronDown, Calendar, Info, X, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
+import { servicesData, ServiceItem } from '../data/servicesData';
 import serviceMassageImage from '../../assets/Service_Massage.png';
-
-const services = [
-  {
-    title: "Massage Therapy / Reflexology",
-    overview: "Offers various therapeutic massage techniques to relieve stress, tension, and pain while promoting circulation and overall relaxation.",
-    types: [
-      {
-        name: "Swedish",
-        description: "Soothing and relaxing massage to relieve stress, ease tension, increase circulation, and calm the body."
-      },
-      {
-        name: "Deep Tissue Therapeutic",
-        description: "Targets muscle knots; increases circulation, lymphatic flow, mobility, and provides pain relief."
-      },
-      {
-        name: "Hot Stone",
-        description: "Uses heated stones to stimulate circulation, relieve knots and stiff muscles, and relax the entire body with warmth and energy."
-      },
-      {
-        name: "Reflexology (Zone Therapy)",
-        description: "Applies pressure to specific reflex points on the feet that correspond to organs and glands to relieve tension, improve circulation, and promote natural body function."
-      }
-    ],
-    pricing: [
-      { duration: "30 minutes", price: "$45" },
-      { duration: "60 minutes", price: "$75" }
-    ],
-    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
-    consultationType: "massage"
-  },
-  {
-    title: "Far Infrared Sauna",
-    overview: "A relaxing sauna session designed to detoxify, aid weight loss, and naturally relieve inflammation and pain.",
-    pricing: [
-      { duration: "30 minutes", price: "$30" }
-    ],
-    packages: [
-      { name: "4-session package", price: "$90", savings: "Save $30" }
-    ],
-    image: "https://images.unsplash.com/photo-1554344056-47143485e1fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
-    consultationType: "sauna"
-  },
-  {
-    title: "Thermography Scans",
-    overview: "Digital Infrared Thermal Imaging by Three Rivers Thermography of Pittsburgh— a non-invasive, FDA-approved clinical procedure (with no radiation) to detect and monitor diseases (especially breast cancer) up to 8-10 years before mammography.",
-    pricing: [
-      { name: "Scan", price: "$225" },
-      { name: "Scan Review by Dr. Lisa Kellerman, ND Naturopathic Doctor", price: "$149" }
-    ],
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
-    consultationType: "thermography"
-  },
-  {
-    title: "Bioenergetic Testing – ZYTO Whole Body Scan",
-    overview: "Utilizes the LSA PRO computerized scanner via a hand-held cradle. It assesses the body for allergies or energy blockages through galvanic skin response testing (similar to a lie detector test). Includes a program appointment and health evaluation.",
-    pricing: [
-      { duration: "30 minutes", price: "$149" }
-    ],
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
-    consultationType: "bioenergetic"
-  },
-  {
-    title: "Allergy Elimination with N.A.E.T.",
-    overview: "Uses Nambrudipad's allergy elimination technique via acupressure on the spine while the client holds a vial containing the allergen. (Note: An allergy scan must be completed first to identify both food and environmental allergies.)",
-    pricing: [
-      { duration: "30-minute session", price: "$80" }
-    ],
-    additionalOptions: [
-      { name: "N.A.E.T. Rescan", price: "$129" },
-      { name: "N.A.E.T. Allergy Elimination Package (17 treatments, Prepaid only)", price: "$1,200", savings: "Save $160" }
-    ],
-    image: "https://images.unsplash.com/photo-1512069766972-4b3202a5927f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
-    consultationType: "naet"
-  },
-  {
-    title: "Harmonic Wave Energy Balancing",
-    overview: "An energy balancing treatment using broadband and E-fields to destroy pathogens and accelerate the body's repair process, customized for specific ailments.",
-    pricing: [
-      { duration: "30 minutes or less", price: "$30" },
-      { duration: "60 minutes", price: "$40" }
-    ],
-    image: "https://images.unsplash.com/photo-1598901865264-4f7235e5fd55?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
-    consultationType: "harmonic-wave"
-  },
-  {
-    title: "Colon Hydrotherapy",
-    overview: "A gentle, warm colon irrigation to remove old fecal matter, retrain bowel function, and promote regular, healthy bowel movements (2-3 per day).",
-    pricing: [
-      { duration: "60 minutes", price: "$99" }
-    ],
-    packages: [
-      { name: "3-session package", price: "$275", bonus: "Includes a complimentary sauna session" }
-    ],
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
-    consultationType: "colon-hydrotherapy"
-  },
-  {
-    title: "Ionic Detox Foot Soak",
-    overview: "A one-hour session that includes an ionic detox foot soak combined with an essential oil cream application for a refreshing detox.",
-    pricing: [
-      { duration: "60 minutes", price: "$80" }
-    ],
-    image: "https://images.unsplash.com/photo-1519415387722-a1c3bbef716c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
-    consultationType: "ionic-detox"
-  },
-  {
-    title: "Ear Candling",
-    overview: "A painless method to remove excess ear wax, relieve water or itchiness in the ears, and alleviate sinus pressure.",
-    pricing: [
-      { duration: "60 minutes", price: "$125" }
-    ],
-    image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
-    consultationType: "ear-candling"
-  },
-  {
-    title: "Paraffin Hand Dip",
-    overview: "A soothing and warm hand treatment that exfoliates, relieves pain, and conditions the skin.",
-    pricing: [
-      { name: "Single treatment", price: "$10" }
-    ],
-    image: "https://images.unsplash.com/photo-1519415387722-a1c3bbef716c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
-    consultationType: "paraffin"
-  },
-  {
-    title: "Bloodwork Review",
-    pricing: [
-      { price: "$149" }
-    ],
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
-    consultationType: "bloodwork"
-  },
-  {
-    title: "Hormone Test Review",
-    overview: "A comprehensive review of hormone test results to help guide your wellness plan.",
-    pricing: [
-      { duration: "30 minutes", price: "$149" }
-    ],
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
-    consultationType: "hormone"
-  }
-];
 
 interface SuccessMessageProps {
   onClose: () => void;
@@ -152,7 +12,7 @@ interface SuccessMessageProps {
 const SuccessMessage: React.FC<SuccessMessageProps> = ({ onClose }) => {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-xl w-full max-w-md p-6 relative">
+      <div className="bg-white rounded-xl w-full max-w-md p-6 relative shadow-2xl">
         <div className="text-center">
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,12 +20,12 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({ onClose }) => {
             </svg>
           </div>
           <h3 className="text-xl font-semibold text-gray-900 mb-4">Booking Successful!</h3>
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-sm mb-6">
             Booking request submitted successfully! We will contact you shortly to confirm your appointment.
           </p>
           <button
             onClick={onClose}
-            className="mt-6 bg-brand-purple hover:bg-brand-purple/90 text-white px-6 py-3 rounded-full inline-flex items-center justify-center transition-colors"
+            className="bg-brand-purple hover:bg-brand-purple/90 text-white px-6 py-2.5 rounded-full inline-flex items-center justify-center transition-colors"
           >
             Close
           </button>
@@ -176,7 +36,7 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({ onClose }) => {
 };
 
 interface BookingFormProps {
-  service: typeof services[0];
+  service: ServiceItem;
   onClose: () => void;
   onSuccess: () => void;
 }
@@ -187,7 +47,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ service, onClose, onSuccess }
     email: '',
     phone: '',
     service_type: service.types ? service.types[0].name : service.title,
-    duration: service.pricing ? service.pricing[0].duration : '30 minutes',
+    duration: service.pricing ? (service.pricing[0].duration || service.pricing[0].name || '30 minutes') : '30 minutes',
     preferred_date: '',
     preferred_time: '',
     notes: ''
@@ -221,13 +81,13 @@ const BookingForm: React.FC<BookingFormProps> = ({ service, onClose, onSuccess }
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-xl w-full max-w-2xl p-6 relative">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-2xl w-full max-w-2xl p-6 relative max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
+          className="absolute right-4 top-4 text-gray-500 hover:text-gray-700 bg-gray-100 p-2 rounded-full"
         >
-          <X size={24} />
+          <X size={20} />
         </button>
 
         <h2 className="text-2xl font-serif text-brand-purple mb-6">Book {service.title}</h2>
@@ -292,9 +152,9 @@ const BookingForm: React.FC<BookingFormProps> = ({ service, onClose, onSuccess }
                   className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
                   required
                 >
-                  {service.pricing.map((price) => (
-                    <option key={price.duration} value={price.duration}>
-                      {price.duration} - {price.price}
+                  {service.pricing.map((price, idx) => (
+                    <option key={idx} value={price.duration || price.name || 'Standard'}>
+                      {price.duration || price.name || 'Session'} - {price.price}
                     </option>
                   ))}
                 </select>
@@ -337,13 +197,13 @@ const BookingForm: React.FC<BookingFormProps> = ({ service, onClose, onSuccess }
             <textarea
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-brand-purple focus:border-brand-purple h-32"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-brand-purple focus:border-brand-purple h-28"
               placeholder="Any specific concerns or requests..."
             />
           </div>
 
           {message && (
-            <div className="p-4 rounded-lg bg-red-50 text-red-700">
+            <div className="p-4 rounded-lg bg-red-50 text-red-700 text-sm">
               {message}
             </div>
           )}
@@ -351,7 +211,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ service, onClose, onSuccess }
           <button
             type="submit"
             disabled={status === 'loading'}
-            className="w-full bg-brand-purple hover:bg-brand-purple/90 text-white px-6 py-3 rounded-full flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
+            className="w-full bg-brand-purple hover:bg-brand-purple/90 text-white px-6 py-3 rounded-full flex items-center justify-center gap-2 transition-colors disabled:opacity-50 font-semibold"
           >
             <Calendar className="w-5 h-5" />
             {status === 'loading' ? 'Submitting...' : 'Book Appointment'}
@@ -364,7 +224,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ service, onClose, onSuccess }
 
 export const Services: React.FC = () => {
   const [expandedService, setExpandedService] = useState<string | null>(null);
-  const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
+  const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleBookingSuccess = () => {
@@ -375,38 +235,47 @@ export const Services: React.FC = () => {
     <div>
       {/* Hero Section */}
       <section 
-        className="relative h-[60vh] bg-cover bg-center bg-no-repeat flex items-center justify-center"
+        className="relative py-12 md:py-16 bg-cover bg-center bg-no-repeat flex items-center justify-center overflow-hidden"
         style={{
           backgroundImage: `url(${serviceMassageImage})`,
         }}
       >
-        <div className="absolute inset-0 bg-black/30 z-10"></div>
+        <div className="absolute inset-0 bg-brand-purple/50 backdrop-blur-[1px] z-10"></div>
         <div className="relative z-20 text-center text-white px-4 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-serif mb-6">Our Services</h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold drop-shadow-md mb-3">Our Services</h1>
+          <p className="text-lg md:text-xl max-w-2xl mx-auto text-white/90">
             Experience the transformative power of holistic healing through our comprehensive wellness services
           </p>
         </div>
       </section>
 
       {/* Services List */}
-      <section className="py-20 px-4">
+      <section className="py-12 md:py-16 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="grid gap-8">
-            {services.map((service) => (
+          <div className="grid gap-6">
+            {servicesData.map((service) => (
               <div 
-                key={service.title}
-                className="bg-white rounded-xl shadow-lg overflow-hidden"
+                key={service.slug}
+                className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow"
               >
                 <div 
-                  className="cursor-pointer"
+                  className="cursor-pointer flex items-center justify-between p-6 bg-white hover:bg-purple-50/50 transition-colors"
                   onClick={() => setExpandedService(expandedService === service.title ? null : service.title)}
                 >
-                  <div className="flex items-center justify-between p-6">
-                    <h2 className="text-2xl font-serif text-brand-purple">{service.title}</h2>
+                  <div className="flex items-center gap-3">
+                    <h2 className="text-xl md:text-2xl font-serif text-brand-purple font-semibold">{service.title}</h2>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Link
+                      to={`/services/${service.slug}`}
+                      onClick={(e) => e.stopPropagation()}
+                      className="hidden sm:inline-flex items-center gap-1 text-xs text-brand-purple hover:underline font-semibold bg-purple-50 px-3 py-1.5 rounded-full border border-purple-100"
+                    >
+                      View Page <ExternalLink size={12} />
+                    </Link>
                     <ChevronDown 
                       size={24} 
-                      className={`text-brand-purple transition-transform ${
+                      className={`text-brand-purple transition-transform duration-200 ${
                         expandedService === service.title ? 'rotate-180' : ''
                       }`}
                     />
@@ -414,19 +283,19 @@ export const Services: React.FC = () => {
                 </div>
 
                 {expandedService === service.title && (
-                  <div className="px-6 pb-6">
+                  <div className="px-6 pb-6 pt-2 border-t border-gray-100 bg-white">
                     {service.overview && (
-                      <p className="text-gray-700 mb-6">{service.overview}</p>
+                      <p className="text-gray-700 mb-6 leading-relaxed text-sm md:text-base">{service.overview}</p>
                     )}
 
                     {service.types && (
                       <div className="mb-6">
-                        <h3 className="text-lg font-semibold mb-3">Available Types:</h3>
-                        <div className="grid gap-4">
+                        <h3 className="text-base font-semibold mb-3 text-gray-900">Available Types:</h3>
+                        <div className="grid gap-3">
                           {service.types.map((type) => (
-                            <div key={type.name} className="bg-gray-50 p-4 rounded-lg">
-                              <h4 className="font-semibold text-brand-purple mb-2">{type.name}</h4>
-                              <p className="text-gray-600">{type.description}</p>
+                            <div key={type.name} className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                              <h4 className="font-semibold text-brand-purple text-sm mb-1">{type.name}</h4>
+                              <p className="text-gray-600 text-xs md:text-sm">{type.description}</p>
                             </div>
                           ))}
                         </div>
@@ -436,12 +305,12 @@ export const Services: React.FC = () => {
                     <div className="space-y-4">
                       {service.pricing && service.pricing.length > 0 && (
                         <div>
-                          <h3 className="text-lg font-semibold mb-3">Pricing:</h3>
+                          <h3 className="text-base font-semibold mb-3 text-gray-900">Pricing:</h3>
                           <div className="grid gap-2">
                             {service.pricing.map((price, index) => (
-                              <div key={index} className="flex justify-between items-center bg-gray-50 p-3 rounded-lg">
-                                <span>{price.duration || price.name || 'Single Session'}</span>
-                                <span className="font-semibold text-brand-purple">{price.price}</span>
+                              <div key={index} className="flex justify-between items-center bg-gray-50 p-3 rounded-xl border border-gray-100 text-sm">
+                                <span className="font-medium text-gray-700">{price.duration || price.name || 'Single Session'}</span>
+                                <span className="font-semibold text-brand-purple text-base">{price.price}</span>
                               </div>
                             ))}
                           </div>
@@ -450,16 +319,16 @@ export const Services: React.FC = () => {
 
                       {service.packages && (
                         <div>
-                          <h3 className="text-lg font-semibold mb-3">Packages:</h3>
+                          <h3 className="text-base font-semibold mb-3 text-gray-900">Packages:</h3>
                           <div className="grid gap-2">
                             {service.packages.map((pkg, index) => (
-                              <div key={index} className="bg-brand-purple/10 p-4 rounded-lg">
-                                <div className="flex justify-between items-center mb-2">
-                                  <span className="font-semibold">{pkg.name}</span>
+                              <div key={index} className="bg-brand-purple/10 p-4 rounded-xl border border-brand-purple/20">
+                                <div className="flex justify-between items-center mb-1">
+                                  <span className="font-semibold text-gray-900 text-sm">{pkg.name}</span>
                                   <span className="text-brand-purple font-bold">{pkg.price}</span>
                                 </div>
                                 {(pkg.savings || pkg.bonus) && (
-                                  <p className="text-sm text-brand-purple">
+                                  <p className="text-xs text-brand-purple font-medium">
                                     {pkg.savings} {pkg.bonus && `• ${pkg.bonus}`}
                                   </p>
                                 )}
@@ -471,16 +340,16 @@ export const Services: React.FC = () => {
 
                       {service.additionalOptions && (
                         <div>
-                          <h3 className="text-lg font-semibold mb-3">Additional Options:</h3>
+                          <h3 className="text-base font-semibold mb-3 text-gray-900">Additional Options:</h3>
                           <div className="grid gap-2">
                             {service.additionalOptions.map((option, index) => (
-                              <div key={index} className="bg-gray-50 p-4 rounded-lg">
-                                <div className="flex justify-between items-center mb-2">
-                                  <span>{option.name}</span>
+                              <div key={index} className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                                <div className="flex justify-between items-center mb-1 text-sm">
+                                  <span className="text-gray-700">{option.name}</span>
                                   <span className="font-semibold text-brand-purple">{option.price}</span>
                                 </div>
                                 {option.savings && (
-                                  <p className="text-sm text-brand-purple">{option.savings}</p>
+                                  <p className="text-xs text-brand-purple">{option.savings}</p>
                                 )}
                               </div>
                             ))}
@@ -489,13 +358,22 @@ export const Services: React.FC = () => {
                       )}
                     </div>
 
-                    <button
-                      onClick={() => setSelectedService(service)}
-                      className="mt-6 w-full bg-brand-purple hover:bg-brand-purple/90 text-white px-6 py-3 rounded-full inline-flex items-center justify-center text-lg transition-colors"
-                    >
-                      <Calendar className="mr-2" size={20} />
-                      Book Appointment
-                    </button>
+                    <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                      <button
+                        onClick={() => setSelectedService(service)}
+                        className="flex-1 bg-brand-purple hover:bg-brand-purple/90 text-white px-6 py-3 rounded-full inline-flex items-center justify-center text-sm font-semibold transition-colors shadow-md"
+                      >
+                        <Calendar className="mr-2" size={18} />
+                        Book Appointment
+                      </button>
+
+                      <Link
+                        to={`/services/${service.slug}`}
+                        className="bg-white hover:bg-purple-50 text-brand-purple border border-brand-purple/30 px-6 py-3 rounded-full inline-flex items-center justify-center text-sm font-semibold transition-colors shadow-sm"
+                      >
+                        Dedicated Page <ChevronRight size={16} className="ml-1" />
+                      </Link>
+                    </div>
                   </div>
                 )}
               </div>
@@ -519,4 +397,4 @@ export const Services: React.FC = () => {
       )}
     </div>
   );
-}
+};

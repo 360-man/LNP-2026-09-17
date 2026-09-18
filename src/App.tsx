@@ -8,6 +8,7 @@ import { Contact } from './pages/Contact';
 import { NaturalSupplements } from './pages/NaturalSupplements';
 import { LifestyleEssentials } from './pages/LifestyleEssentials';
 import { Services } from './pages/Services';
+import { ServiceDetail } from './pages/ServiceDetail';
 import { Location } from './pages/Location';
 import { Consultation } from './pages/Consultation';
 import { ScrollToTop } from './components/ScrollToTop';
@@ -24,6 +25,7 @@ function App() {
         <Route path="/shop/natural-supplements" element={<Layout><NaturalSupplements /></Layout>} />
         <Route path="/shop/lifestyle-essentials" element={<Layout><LifestyleEssentials /></Layout>} />
         <Route path="/services" element={<Layout><Services /></Layout>} />
+        <Route path="/services/:slug" element={<Layout><ServiceDetail /></Layout>} />
         <Route path="/location" element={<Layout><Location /></Layout>} />
         <Route path="/consultation" element={<Layout><Consultation /></Layout>} />
       </Routes>
