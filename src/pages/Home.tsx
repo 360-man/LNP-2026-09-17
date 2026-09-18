@@ -100,23 +100,23 @@ export function Home() {
 
       {/* Services Section */}
       <section 
-        className="relative py-32 bg-cover bg-center"
+        className="relative py-12 md:py-16 bg-cover bg-center"
         style={{
           backgroundImage: 'url("https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80")',
           backgroundAttachment: 'fixed'
         }}
       >
-        <div className="absolute inset-0 bg-black/50"></div>
-        <div className="relative max-w-4xl mx-auto px-4 text-center text-white">
-          <h2 className="text-5xl font-small mb-6">
+        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="relative max-w-4xl mx-auto px-4 text-center text-white z-10">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-sans font-medium mb-8 max-w-3xl mx-auto leading-relaxed text-white/95">
             Serving Butler, Shanor-Northvue, and surrounding areas, Lisa's Natural Path is your trusted Holistic Practitioner and wellness center. Our Traditional Naturopathic Practitioner and skilled Licensed Massage Therapist provide natural solutions for pain relief, hormone testing, allergy elimination, colon hydrotherapy, and complete health evaluations. We partner with you to achieve your highest health potential through the body's innate healing ability.
           </h2>
           <Link
             to="/services"
-            className="inline-flex items-center bg-white hover:bg-white/90 text-brand-purple px-8 py-4 rounded-full text-lg transition-colors"
+            className="inline-flex items-center bg-white hover:bg-white/90 text-brand-purple px-8 py-3.5 rounded-full text-lg font-semibold transition-colors shadow-md hover:shadow-lg"
           >
             Learn More
-            <ChevronRight className="ml-2" size={24} />
+            <ChevronRight className="ml-2" size={20} />
           </Link>
         </div>
       </section>
