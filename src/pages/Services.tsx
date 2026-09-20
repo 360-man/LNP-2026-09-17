@@ -23,20 +23,6 @@ export const Services: React.FC = () => {
         </div>
       </section>
 
-      {/* Services Grid Section */}
-      {/*
-      <section className="py-12 md:py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif text-brand-purple font-bold mb-4">
-              Comprehensive Holistic Care
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-base md:text-lg">
-              Explore our wide range of natural health services and click Learn More to view full details, pricing, and appointment options for each service.
-            </p>
-          </div>
-          */}
-
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-[100px]">
             {servicesData.map((service) => (
               <div 
