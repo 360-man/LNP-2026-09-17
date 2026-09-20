@@ -17,13 +17,14 @@ export const Services: React.FC = () => {
         <div className="absolute inset-0 bg-brand-purple/50 backdrop-blur-[1px] z-10"></div>
         <div className="relative z-20 text-center text-white px-4 max-w-4xl mx-auto">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold drop-shadow-md mb-3">Our Services</h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto text-white/90">
+          <p className="text-lg md:text-xl max-w-2xl mx-auto text-white">
             Explore our wide range of natural health services. Click Learn More to view full details, pricing, and appointment options for each service.
           </p>
         </div>
       </section>
 
       {/* Services Grid Section */}
+      {/*
       <section className="py-12 md:py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
@@ -34,6 +35,7 @@ export const Services: React.FC = () => {
               Explore our wide range of natural health services and click Learn More to view full details, pricing, and appointment options for each service.
             </p>
           </div>
+          */}
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-[100px]">
             {servicesData.map((service) => (
