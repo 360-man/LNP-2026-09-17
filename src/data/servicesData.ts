@@ -1,3 +1,15 @@
+import saunaImage from '../../assets/services/Service_Sauna-InfraRed.jpg';
+import thermographyImage from '../../assets/services/Thermography_Scan.jpg';
+import zytoImage from '../../assets/services/Service_ZYTO-Scan_Bioenergetic-Testing2.png';
+import naetImage from '../../assets/services/NAET-Allergy_Elimination.png';
+import harmonicWaveImage from '../../assets/services/HarmonicWave-purple.png';
+import colonHydrotherapyImage from '../../assets/services/colon-hydrotherapy-room-.png';
+import footDetoxImage from '../../assets/services/Foot-Detox-Ionic-bath.jpg';
+import earCandlingImage from '../../assets/services/Ear-Candling.png';
+import paraffinImage from '../../assets/services/Paraffin-Hand-Dip.png';
+import bloodworkImage from '../../assets/services/Bloodwork-Review.png';
+import hormoneImage from '../../assets/services/Hormone-Test-Review.png';
+
 export interface ServiceType {
   name: string;
   description: string;
@@ -74,7 +86,7 @@ export const servicesData: ServiceItem[] = [
     packages: [
       { name: "4-session package", price: "$90", savings: "Save $30" }
     ],
-    image: "https://images.unsplash.com/photo-1554344056-47143485e1fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    image: saunaImage,
     consultationType: "sauna"
   },
   {
@@ -85,7 +97,7 @@ export const servicesData: ServiceItem[] = [
       { name: "Scan", price: "$225" },
       { name: "Scan Review by Dr. Lisa Kellerman, ND Naturopathic Doctor", price: "$149" }
     ],
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    image: thermographyImage,
     consultationType: "thermography"
   },
   {
@@ -95,7 +107,7 @@ export const servicesData: ServiceItem[] = [
     pricing: [
       { duration: "30 minutes", price: "$149" }
     ],
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    image: zytoImage,
     consultationType: "bioenergetic"
   },
   {
@@ -109,7 +121,7 @@ export const servicesData: ServiceItem[] = [
       { name: "N.A.E.T. Rescan", price: "$129" },
       { name: "N.A.E.T. Allergy Elimination Package (17 treatments, Prepaid only)", price: "$1,200", savings: "Save $160" }
     ],
-    image: "https://images.unsplash.com/photo-1512069766972-4b3202a5927f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    image: naetImage,
     consultationType: "naet"
   },
   {
@@ -120,7 +132,7 @@ export const servicesData: ServiceItem[] = [
       { duration: "30 minutes or less", price: "$30" },
       { duration: "60 minutes", price: "$40" }
     ],
-    image: "https://images.unsplash.com/photo-1598901865264-4f7235e5fd55?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    image: harmonicWaveImage,
     consultationType: "harmonic-wave"
   },
   {
@@ -133,7 +145,7 @@ export const servicesData: ServiceItem[] = [
     packages: [
       { name: "3-session package", price: "$275", bonus: "Includes a complimentary sauna session" }
     ],
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    image: colonHydrotherapyImage,
     consultationType: "colon-hydrotherapy"
   },
   {
@@ -143,7 +155,7 @@ export const servicesData: ServiceItem[] = [
     pricing: [
       { duration: "60 minutes", price: "$80" }
     ],
-    image: "https://images.unsplash.com/photo-1519415387722-a1c3bbef716c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    image: footDetoxImage,
     consultationType: "ionic-detox"
   },
   {
@@ -153,7 +165,7 @@ export const servicesData: ServiceItem[] = [
     pricing: [
       { duration: "60 minutes", price: "$125" }
     ],
-    image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    image: earCandlingImage,
     consultationType: "ear-candling"
   },
   {
@@ -163,7 +175,7 @@ export const servicesData: ServiceItem[] = [
     pricing: [
       { name: "Single treatment", price: "$10" }
     ],
-    image: "https://images.unsplash.com/photo-1519415387722-a1c3bbef716c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    image: paraffinImage,
     consultationType: "paraffin"
   },
   {
@@ -173,7 +185,7 @@ export const servicesData: ServiceItem[] = [
     pricing: [
       { name: "Comprehensive Review", price: "$149" }
     ],
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    image: bloodworkImage,
     consultationType: "bloodwork"
   },
   {
@@ -183,7 +195,7 @@ export const servicesData: ServiceItem[] = [
     pricing: [
       { duration: "30 minutes", price: "$149" }
     ],
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+    image: hormoneImage,
     consultationType: "hormone"
   }
 ];
