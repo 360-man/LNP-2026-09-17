@@ -35,7 +35,7 @@ export const Services: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-[30px]">
             {servicesData.map((service) => (
               <div 
                 key={service.slug}
@@ -49,17 +49,16 @@ export const Services: React.FC = () => {
                       alt={service.title} 
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                  </div>
-
-                  {/* Card Header & Description */}
-                  <div className="p-6">
-                    <h2 className="text-xl font-serif text-brand-purple font-bold mb-3 leading-snug group-hover:text-brand-purple/80 transition-colors">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <h2 className="absolute bottom-3 left-4 right-4 text-lg font-serif text-white font-bold leading-snug drop-shadow-md">
                       <Link to={`/services/${service.slug}`}>
                         {service.title}
                       </Link>
                     </h2>
+                  </div>
 
+                  {/* Card Description */}
+                  <div className="p-6">
                     <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
                       {service.overview}
                     </p>
