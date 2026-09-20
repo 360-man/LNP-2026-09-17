@@ -352,16 +352,6 @@ export function ServiceDetail() {
                   </div>
                 )}
 
-                {/* CTA Action Button */}
-                <div className="pt-6 border-t border-gray-100">
-                  <button
-                    onClick={() => setIsBookingOpen(true)}
-                    className="w-full bg-brand-purple hover:bg-brand-purple/90 text-white font-semibold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2.5 text-lg"
-                  >
-                    <Calendar size={22} />
-                    Book Appointment for {service.title}
-                  </button>
-                </div>
               </div>
             </div>
 
