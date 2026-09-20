@@ -6,7 +6,7 @@ import serviceMassageImage from '../../assets/Service_Massage.png';
 
 export const Services: React.FC = () => {
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-[#D2F6D5]">
       {/* Hero Banner Section */}
       <section 
         className="relative py-12 md:py-16 bg-cover bg-center bg-no-repeat flex items-center justify-center overflow-hidden"
